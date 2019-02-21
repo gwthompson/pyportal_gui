@@ -27,7 +27,7 @@ gui.good_gap_size  = 5
 gui.good_widget_size  = 60
 gui.aprox_char_size = (6,8)
 
-gui.color = rgb.colorst
+gui.color = rgb.colorili
 gui.color_max = 255
 
 #give suystem needed parameters
@@ -57,8 +57,8 @@ while True:
     #touch sterf
     try:
         point = ts.touch_point[0:2]
+        system_handler.push_event('ptr.go.'+str(),'ptr.d')
         was_touched = True
-        print(point)
     except:
         if was_touched:
             system_handler.push_event('ptr.prs')
@@ -77,6 +77,9 @@ while True:
         break
 
     #the system.cycle runs a cycle then returns any errors and outputs
-    print(system.cycle())
+    ret = system.cycle()
+    if len(ret):
+        print(ret)
+    gc.collect()
 
 print('done')
