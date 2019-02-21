@@ -1,7 +1,7 @@
 from tg_gui import gui, system, system_handler
 from tg_modules.tg_rgb import rgb, ili9341
 from tg_modules.make_ios import dio
-import time, random, gc, supervisor, busio, board, pulseio
+import time, random, gc, supervisor, busio, board, digitalio, pulseio, adafruit_touchscreen
 gc.enable()
 
 from displayio import release_displays
@@ -11,6 +11,12 @@ release_displays()
 disp = ili9341.ILI9341(busio.SPI(board.SCK, board.MOSI, board.MISO), dio(board.TFT_DC, 0), dio(board.TFT_CS, 0), dio(board.TFT_RESET, 0))
 backlight = pulseio.PWMOut(board.TFT_BACKLIGHT)
 backlight.duty_cycle = 2**16 -1
+
+#touchscreen setup
+ts = adafruit_touchscreen.Touchscreen(board.TOUCH_XL, board.TOUCH_XR,
+                                      board.TOUCH_YD, board.TOUCH_YU,
+                                      calibration=((5200, 59000), (5800, 57000)),
+                                      size=(320, 240))
 
 ##gui setup:
 gui.round_rect = disp.round_rect
@@ -38,22 +44,34 @@ system.enable_system_status_bar = True
 
 #system.standard_path = 'programs'
 
-system.debug = True
+system.debug = False
 system.debug_level = 1000
 
 #system.home_program = 'programs.Therm_Cam'
 
 system.init()
-system_handler.push_event('move')
 system.cycle()
 
+was_touched = False
 while True:
+    #touch sterf
+    try:
+        point = ts.touch_point[0:2]
+        was_touched = True
+        print(point)
+    except:
+        if was_touched:
+            system_handler.push_event('ptr.prs')
+            was_touched = False
+        else:
+            system_handler.push_event('ptr.u')
+
 
     #if connected over serial
-    if supervisor.runtime.serial_connected:
+    '''if supervisor.runtime.serial_connected:
         system.repl_query()
     else:
-        system_handler.push_event('mv')
+        system_handler.push_event('mv')'''
 
     if '!break' in system_handler._event_que:
         break
