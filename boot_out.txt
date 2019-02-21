@@ -1,1 +1,1 @@
-Adafruit CircuitPython 4.0.0-beta.2-97-g0dc260058 on 2019-02-20; Adafruit PyPortal with samd51j20
+Adafruit CircuitPython 4.0.0-beta.2-36-g66b0c67f5-dirty on 2019-02-12; Adafruit PyPortal with samd51j20
