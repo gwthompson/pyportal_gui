@@ -52,6 +52,9 @@ system.debug_level = 1000
 system.init()
 system.cycle()
 
+#system.gui._touch.add(system.gui.pointable_widget(0,0,240,320, system.gui._working_window.current, system.gui._do_nothing))
+system.gui._working_window.current.place(10,0,50,300)
+
 was_touched = False
 while True:
     #touch sterf
