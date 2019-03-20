@@ -53,7 +53,8 @@ system.init()
 system.cycle()
 
 #system.gui._touch.add(system.gui.pointable_widget(0,0,240,320, system.gui._working_window.current, system.gui._do_nothing))
-system.gui._working_window.current.place(10,0,50,300)
+#print(system.gui._working_window.current.width, system.gui._working_window.current.height)
+#system.gui._working_window.current.place(10,0,50,300)
 
 was_touched = False
 while True:
