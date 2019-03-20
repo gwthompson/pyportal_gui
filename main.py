@@ -86,5 +86,7 @@ while True:
     if len(ret):
         print(ret)
     gc.collect()
+    print(system._touch._obj_list)
+    time.sleep(.5)
 
 print('done')
