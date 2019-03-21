@@ -42,7 +42,7 @@ system.height = disp.height
 system.enable_touch_navigation_bar = True
 system.enable_system_status_bar = True
 
-#system.standard_path = 'programs'
+system.program_paths.append("programs")
 
 system.debug = False
 system.debug_level = 1000
@@ -86,7 +86,7 @@ while True:
     if len(ret):
         print(ret)
     gc.collect()
-    print(system._touch._obj_list)
-    time.sleep(.5)
+    #print(system._touch._obj_list)
+    #time.sleep(.5)
 
 print('done')
