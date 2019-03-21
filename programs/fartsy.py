@@ -7,15 +7,19 @@ page0 = gui.page()
 print(page0.width-10)
 my_canvas = canvas(5,5,page0.width-10,page0.width-10,page0)
 
-x = 1
-y = 1
+x = 0
+y = 0
 def smap(source):
     global x,y
-    my_canvas.draw(x,y,gui.red)
+    my_canvas.draw_pixel(x,y,gui.red)
+    my_canvas.draw_pixel(x,y+1,gui.red)
     x +=1
-    y+=1
+    y+=2
 
 def smoop(source):
+    global x,y
+    x = 0
+    y = 0
     for i in range(300):
         smap(7)
 

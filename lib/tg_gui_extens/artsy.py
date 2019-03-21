@@ -43,19 +43,7 @@ class canvas(widget):
                     self.height - self._border*2,
                     0, self._color)
 
-    """def draw(self, x, y, width, height, color):
-        if  (x < self.width - self._border*2) and\
-            (y < self.height - self._border*2) and\
-            (width+x <= self.width - self._border*2 ) and\
-            (height+y <= self.height - self._border*2 + height -1):
-            round_rect( self.physical_x + self._border + x,
-                        self.physical_y + self.height -self._border -y - height + 1,
-                        width, height, 0, color)
-            print(True)
-        else:
-            print(False)"""
-
-    def draw(self, x, y, color):
+    def draw_pixel(self, x, y, color):
         if 0<x<self.width-self._border*2 and 0<y<self.height-self._border*2:
             round_rect( self.physical_x + self._border + x,
                         self.physical_y + self.height -self._border -y,
