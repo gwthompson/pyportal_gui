@@ -25,14 +25,14 @@ class canvas(widget):
 
     def __init__(self, *args, border = good_gap_size, border_color = default_color, color = white):
         super().__init__(*args)
-        print(*args)
+        #print(*args)
         self._border = border
         self._border_color = border_color
         self._color = color
 
     def place(self):
         super().place()
-        print(self.width)
+        #print(self.width)
         round_rect( self.physical_x,
                     self.physical_y,
                     self.width, self.height, 0,

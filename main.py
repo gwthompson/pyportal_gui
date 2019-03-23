@@ -43,6 +43,8 @@ system.enable_touch_navigation_bar = True
 system.enable_system_status_bar = True
 
 system.program_paths.append("programs")
+system.program_paths.append("lib.tg_gui.programs.examples")
+
 
 system.debug = False
 system.debug_level = 1000
@@ -57,6 +59,7 @@ system.cycle()
 #system.gui._working_window.current.place(10,0,50,300)
 
 was_touched = False
+enable_serial = False
 while True:
     #touch sterf
     try:
@@ -73,13 +76,15 @@ while True:
 
 
     #if connected over serial
-    '''if supervisor.runtime.serial_connected:
+    if supervisor.runtime.serial_connected and enable_serial:
         system.repl_query()
-    else:
-        system_handler.push_event('mv')'''
+        system_handler.push_event('mv')
+
 
     if '!break' in system_handler._event_que:
         break
+    if '!kbrd_off' in system_handler._event_que:
+        enable_serial = False
 
     #the system.cycle runs a cycle then returns any errors and outputs
     ret = system.cycle()
