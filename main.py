@@ -58,6 +58,8 @@ system.cycle()
 #print(system.gui._working_window.current.width, system.gui._working_window.current.height)
 #system.gui._working_window.current.place(10,0,50,300)
 
+system_handler.push_event('mv','mv.prs','ptr.up')#'mv.n','mv.prs','mv', 'mv.prs')
+
 was_touched = False
 enable_serial = False
 while True:
