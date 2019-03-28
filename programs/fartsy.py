@@ -5,26 +5,30 @@ window = system_handler.request_window()
 #print('fartsy window', window)
 
 page0 = gui.page()
+page1 = gui.page()
 
+
+###----page0----
 #print(page0.width-10)
 my_canvas = canvas(5,5,page0.width-10,page0.width-50,page0)
 
 x = 0
 y = 0
-def smap(source):
-    global x,y
-    my_canvas.draw_pixel(x,y,gui.red)
-    my_canvas.draw_pixel(x,y+1,gui.red)
-    x+=1
-    y+=2
-
+color = gui.red
 def smoop(source):
-    global x,y
+    global x,y, color
     my_canvas.clear()
     x = 0
     y = 0
     for i in range(300):
-        smap(7)
+        my_canvas.draw_pixel(x,y,color)
+        my_canvas.draw_pixel(x,y+1,color)
+        x+=1
+        y+=2
+    if color == gui.red:
+        color = gui.blue
+    else:
+        color = gui.red
 
 def reload(source):
     import supervisor
@@ -41,7 +45,7 @@ gui.button(5, 5, 50, 50, 3, bubble, "shoo away", bubble.shoo)
 #print('fartsy window_contents', window._contents)
 #print('fartsy page0 id',id(page0))
 
-def skap(*args):
+def summon_pop(*args):
     #global page0
     #page0.place()
     #print('skap page0', page0)
@@ -55,7 +59,9 @@ def skap(*args):
 
 #skap()
 
-gui.button(60, page0.width -40, 50, 40, 0, page0, "pop!", skap)
+gui.button(60, page0.width -40, 50, 40, 0, page0, "pop!", summon_pop)
 #print('page0 post button makey', page0)
 gui.button(115, page0.width -40, 50, 40, 0, page0, "reload!", reload)
 #print('page0 post button makey2', page0)
+
+###----page1----
