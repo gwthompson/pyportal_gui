@@ -47,7 +47,7 @@ system.program_paths.append("lib.tg_gui.programs.examples")
 
 
 system.debug = False
-system.debug_level = 4
+system.debug_level = 6
 
 #system.home_program = 'programs.Therm_Cam'
 
@@ -58,7 +58,7 @@ system.cycle()
 #print(system.gui._working_window.current.width, system.gui._working_window.current.height)
 #system.gui._working_window.current.place(10,0,50,300)
 
-#system_handler.push_event('mv','mv.prs','ptr.up', '_.point.up')#'mv.n','mv.prs','mv', 'mv.prs')
+system_handler.push_event('mv','mv.prs','ptr.up', '_.point.up','mv.n','chgpg.n','mv','mv.prs','mv',)# 'mv.prs')
 
 _resources
 

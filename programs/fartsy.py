@@ -36,7 +36,7 @@ def reload(source):
 
 gui.button(5, page0.width -40, 50, 40, 0, page0, "pixel", smoop)
 
-bubble = gui.popup(9/11, 9/11)
+bubble = gui.popup(9/11, 9/11, enable_shoo_zone = True)
 #print('fartsy bubble',bubble)
 #gui.button(5, 5, 50, 50, 3, bubble, "shoo away", bubble.shoo)
 gui.button(5, 5, 50, 50, 3, bubble, "shoo away", bubble.shoo)
@@ -65,3 +65,10 @@ gui.button(115, page0.width -40, 50, 40, 0, page0, "reload!", reload)
 #print('page0 post button makey2', page0)
 
 ###----page1----
+
+plate = gui.sized_popup(50,50,115,50)
+
+def summon_plate(*args):
+    plate.intrude(page1)
+
+gui.button(50, 50, 50, 50, 5, page1, 'ooh?', summon_plate)
