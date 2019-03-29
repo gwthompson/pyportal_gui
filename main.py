@@ -64,19 +64,21 @@ _resources
 
 was_touched = False
 enable_serial = False
+enable_touch = True
 while True:
     #touch sterf
-    try:
-        point = ts.touch_point[0:2]
-        print(point)
-        system_handler.push_event('ptr.go.'+str(point[1])+','+str(320-point[0]),'ptr.d')
-        was_touched = True
-    except:
-        if was_touched:
-            system_handler.push_event('ptr.prs')
-            was_touched = False
-        else:
-            system_handler.push_event('ptr.u')
+    if enable_touch:
+        try:
+            point = ts.touch_point[0:2]
+            print(point)
+            system_handler.push_event('ptr.go.'+str(point[1])+','+str(320-point[0]),'ptr.d')
+            was_touched = True
+        except:
+            if was_touched:
+                system_handler.push_event('ptr.prs')
+                was_touched = False
+            else:
+                system_handler.push_event('ptr.u')
 
 
     #if connected over serial
