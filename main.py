@@ -1,4 +1,4 @@
-from tg_gui import gui, system, system_handler
+from tg_gui import gui, system, system_handler, _resources
 from tg_modules.tg_rgb import rgb, ili9341
 from tg_modules.make_ios import dio
 import time, random, gc, supervisor, busio, board, digitalio, pulseio, adafruit_touchscreen
@@ -43,9 +43,11 @@ system.enable_touch_navigation_bar = True
 system.enable_system_status_bar = True
 
 system.program_paths.append("programs")
+system.program_paths.append("lib.tg_gui.programs.examples")
+
 
 system.debug = False
-system.debug_level = 1000
+system.debug_level = 6
 
 #system.home_program = 'programs.Therm_Cam'
 
@@ -56,30 +58,39 @@ system.cycle()
 #print(system.gui._working_window.current.width, system.gui._working_window.current.height)
 #system.gui._working_window.current.place(10,0,50,300)
 
+#system_handler.push_event('mv','mv.prs','chgpg.go.1','mv.n','mv.prs','mv')# 'mv.prs')
+
+_resources
+
 was_touched = False
+enable_serial = False
+enable_touch = True
 while True:
     #touch sterf
-    try:
-        point = ts.touch_point[0:2]
-        print(point)
-        system_handler.push_event('ptr.go.'+str(point[1])+','+str(320-point[0]),'ptr.d')
-        was_touched = True
-    except:
-        if was_touched:
-            system_handler.push_event('ptr.prs')
-            was_touched = False
-        else:
-            system_handler.push_event('ptr.u')
+    if enable_touch:
+        try:
+            point = ts.touch_point[0:2]
+            print(point)
+            system_handler.push_event('ptr.go.'+str(point[1])+','+str(320-point[0]),'ptr.d')
+            was_touched = True
+        except:
+            if was_touched:
+                system_handler.push_event('ptr.prs')
+                was_touched = False
+            else:
+                system_handler.push_event('ptr.u')
 
 
     #if connected over serial
-    '''if supervisor.runtime.serial_connected:
+    if supervisor.runtime.serial_connected and enable_serial:
         system.repl_query()
-    else:
-        system_handler.push_event('mv')'''
+        system_handler.push_event('mv')
+
 
     if '!break' in system_handler._event_que:
         break
+    if '!kbrd_off' in system_handler._event_que:
+        enable_serial = False
 
     #the system.cycle runs a cycle then returns any errors and outputs
     ret = system.cycle()
