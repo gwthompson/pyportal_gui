@@ -2,10 +2,11 @@ from tg_gui import gui, system_handler
 from tg_gui_extens.artsy import canvas
 
 window = system_handler.request_window()
-#print('fartsy window', window)
 
-page0 = gui.page()
+# !the order in which the pages are created is the order they are in the window
 page1 = gui.page()
+page0 = gui.page()
+
 
 
 ###----page0----
@@ -66,8 +67,20 @@ gui.button(115, page0.width -40, 50, 40, 0, page0, "reload!", reload)
 
 ###----page1----
 
-plate = gui.sized_popup(50,50,115,50)
+plate = gui.sized_popup(50,45,105,50)
 
+#gui.rect(50,18,105,24,0,page1,gui.white)
+#text_box = gui.text(52,20,100,20, page1, '', size = 1)
+text_box = gui.text(50,20,105,20, page1, '', size = 1, border = 2)
+
+
+
+def text_clear(*args):
+    text_box.text = ''
+
+mat = gui.button_matrix(0,0, plate.width, plate.height, 2, 1, gui.good_gap_size, 0, plate)
+mat[0].text = 'clr\ntxt'
+mat[0].purpose = text_clear
 
 def summon_plate(*args):
     plate.intrude(page1)
@@ -75,10 +88,13 @@ def summon_plate(*args):
 def summon_kbrd(source):
     system_handler.prompt_keyboard(source.stored_data)
 
-gui.button(50, 50, 50, 50, 5, page1, 'ooh?', summon_plate)
-kbrd_but = gui.button(105, 105, 50, 50, 5, page1, 'kbrd?', summon_kbrd)
-gui.rect(18,18,124,24,0,page1,gui.white)
-text_box = gui.text(20,20,120,20, page1, '')
-kbrd_but.stored_data = text_box
 
+
+
+gui.button(50, 45, 50, 50, 5, page1, 'ooh?', summon_plate)
+kbrd_but = gui.button(105, 45, 45, 50, 5, page1, 'kbrd?', summon_kbrd)
+
+#textbox
+
+kbrd_but.stored_data = text_box
 
