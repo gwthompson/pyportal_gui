@@ -297,8 +297,6 @@ class Display: #pylint: disable-msg=no-member
                         #change array
                         for byte_offset in (range(self.color_depth)):
                             array[pos+self.color_depth-1-byte_offset] = ((cur_color) >> byte_offset*8) & 255 #(0b11111111)
-        #put background around
-        self.rect(xin , yin, width +1, height +1 + rect_extension, background)
         #print(width, height)
         if size > 1:
             array_out = bytearray(0)
@@ -314,7 +312,7 @@ class Display: #pylint: disable-msg=no-member
 
         else:
             array_out = array
-
+        #self.rect(xin , yin, width +1, height +1 + rect_extension, background)
         self._block(xin , yin+1 , xin-1+ width*size +italics, yin-1+ height*size +1, array_out)
         try:
             self.text(xin - self.x_offset ,yin - self.y_offset +1+rect_extension+7*size,next_text,

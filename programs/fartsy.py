@@ -68,7 +68,17 @@ gui.button(115, page0.width -40, 50, 40, 0, page0, "reload!", reload)
 
 plate = gui.sized_popup(50,50,115,50)
 
+
 def summon_plate(*args):
     plate.intrude(page1)
 
+def summon_kbrd(source):
+    system_handler.prompt_keyboard(source.stored_data)
+
 gui.button(50, 50, 50, 50, 5, page1, 'ooh?', summon_plate)
+kbrd_but = gui.button(105, 105, 50, 50, 5, page1, 'kbrd?', summon_kbrd)
+gui.rect(18,18,124,24,0,page1,gui.white)
+text_box = gui.text(20,20,120,20, page1, '')
+kbrd_but.stored_data = text_box
+
+
