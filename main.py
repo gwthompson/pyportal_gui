@@ -22,7 +22,7 @@ ts = adafruit_touchscreen.Touchscreen(board.TOUCH_XL, board.TOUCH_XR,
 gui.round_rect = disp.round_rect
 gui.place_text = disp.text
 
-gui.good_text_size = 2
+gui.good_text_size = 1
 gui.good_gap_size  = 5
 gui.good_widget_size  = 50
 gui.aprox_char_size = (6,8)

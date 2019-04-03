@@ -314,6 +314,8 @@ class Display: #pylint: disable-msg=no-member
             array_out = array
         #self.rect(xin , yin, width +1, height +1 + rect_extension, background)
         self._block(xin , yin+1 , xin-1+ width*size +italics, yin-1+ height*size +1, array_out)
+        del array_out
+        clean_mem()
         try:
             self.text(xin - self.x_offset ,yin - self.y_offset +1+rect_extension+7*size,next_text,
                                       color = color,
@@ -322,8 +324,7 @@ class Display: #pylint: disable-msg=no-member
                                       italics = italics)
         except NameError:
             pass
-        del xin,yin,comp_list, enter_stat, text, width, height, array_out, x_pos, y_pos
-        clean_mem()
+        del xin,yin,comp_list, enter_stat, text, width, height, x_pos, y_pos
 
 
     def scroll(self,x,y,str, color = colorst(255,255,255), background = None, size = 1):
