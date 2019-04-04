@@ -44,10 +44,11 @@ system.enable_system_status_bar = True
 
 system.program_paths.append("programs")
 system.program_paths.append("lib.tg_gui.programs.examples")
+#system.home_program = 'lib.tg_gui.programs.examples.EXP_1'
 
 
 system.debug = False
-system.debug_level = 6
+system.debug_level = 3
 
 #system.home_program = 'programs.Therm_Cam'
 
@@ -59,8 +60,7 @@ system.cycle()
 #system.gui._working_window.current.place(10,0,50,300)
 
 #system_handler.push_event('mv','mv.prs','chgpg.go.1','mv.n','mv.prs','mv')# 'mv.prs')
-
-_resources
+#system_handler.push_event('mv', 'mv.n','mv.prs')
 
 was_touched = False
 enable_serial = False
