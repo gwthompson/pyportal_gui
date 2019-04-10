@@ -26,6 +26,7 @@ gui.good_text_size = 1
 gui.good_gap_size  = 5
 gui.good_widget_size  = 50
 gui.aprox_char_size = (6,8)
+gui.good_radius_size = 0
 
 gui.color = rgb.colorili
 gui.color_max = 255

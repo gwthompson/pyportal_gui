@@ -1,3 +1,4 @@
+'''style:{color:red, text_color:black}'''
 from tg_gui import gui, system_handler
 from tg_gui_extens.artsy import canvas
 
