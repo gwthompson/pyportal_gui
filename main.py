@@ -1,16 +1,23 @@
-from tg_gui import gui, system, system_handler, _resources
+# imports to turn the screen on
 from tg_modules.tg_rgb import rgb, ili9341
 from tg_modules.make_ios import dio
-import time, random, gc, supervisor, busio, board, digitalio, pulseio, adafruit_touchscreen
-gc.enable()
+import busio, board, pulseio, time
 
 from displayio import release_displays
 release_displays()
 
 #setup disp
 disp = ili9341.ILI9341(busio.SPI(board.SCK, board.MOSI, board.MISO), dio(board.TFT_WR, 0), dio(board.TFT_CS, 0), dio(board.TFT_RESET, 0))
+time.sleep(.01)
 backlight = pulseio.PWMOut(board.TFT_BACKLIGHT)
 backlight.duty_cycle = 2**16 -1
+
+del release_displays
+
+# rest of imports
+from tg_gui import gui, system, system_handler, _resources
+import random, gc, supervisor, digitalio, adafruit_touchscreen
+gc.enable()
 
 #touchscreen setup
 ts = adafruit_touchscreen.Touchscreen(board.TOUCH_XL, board.TOUCH_XR,
@@ -62,6 +69,8 @@ system.cycle()
 
 #system_handler.push_event('mv','mv.prs','chgpg.go.1','mv.n','mv.prs','mv')# 'mv.prs')
 #system_handler.push_event('mv', 'mv.n','mv.prs')
+
+gc.collect()
 
 was_touched = False
 enable_serial = False
